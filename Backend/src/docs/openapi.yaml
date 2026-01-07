@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: Job Board API
+  description: API for managing Job postings
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/api
+    description: Local Development
+
+paths:
+  /newJob:
+    post:
+      summary: Create a new job
+      tags: [Jobs]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/JobInput"
+      responses:
+        201:
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JobResponse"
+
+components:
+  schemas:
+    JobInput:
+      type: object
+      required:
+        - title
+        - department
+        - location
+        - status
+        - headcount
+        - description
+        - requirements
+      properties:
+        title:
+          type: string
+          description: Unique title of the job
+          example: "Senior Backend Engineer"
+        department:
+          type: string
+          example: "Engineering"
+        location:
+          type: string
+          example: "Remote"
+        status:
+          type: string
+          enum: [OPEN, CLOSED, HOLD] 
+          example: "OPEN"
+        headcount:
+          type: integer
+          minimum: 1
+          example: 3
+        description:
+          type: string
+          description: Detailed job description
+        requirements:
+          type: string
+          description: Job requirements and skills
+
+
+    JobResponse:
+      allOf:
+        - $ref: "#/components/schemas/JobInput"
+        - type: object
+          properties:
+            _id:
+              type: string
+              description: Auto-generated MongoDB ID
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
