@@ -1,0 +1,16 @@
+openapi: 3.0.0
+info:
+  title: Job Board API
+  description: API for managing Job postings
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/api
+    description: Local Development
+paths:
+  $ref: "./paths/Jobs.yaml"
+components:
+  schemas:
+    JobInput:
+      $ref: "./components/schemas/Job.yaml#/JobInput"
+    JobResponse:
+      $ref: "./components/schemas/Job.yaml#/JobResponse"
