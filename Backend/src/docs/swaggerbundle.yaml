@@ -81,19 +81,21 @@ components:
           description: Job requirements and skills
           example: 5+ years Node.js experience
     JobResponse:
-      allOf:
-        - $ref: '#/components/schemas/JobInput'
-        - type: object
-          properties:
-            id:
-              type: string
-              description: Auto-generated MongoDB ID
-              example: 507f1f77bcf86cd799439011
-            createdAt:
-              type: string
-              format: date-time
-              example: '2024-01-08T10:30:00Z'
-            updatedAt:
-              type: string
-              format: date-time
-              example: '2024-01-08T10:30:00Z'
+      type: object
+      properties:
+        id:
+          type: string
+          description: Auto-generated MongoDB ID
+          example: 507f1f77bcf86cd799439011
+        createdAt:
+          type: string
+          format: date-time
+          example: '2024-01-08T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2024-01-08T10:30:00Z'
+      required:
+        - id
+        - createdAt
+        - updatedAt

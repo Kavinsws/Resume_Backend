@@ -1,7 +1,9 @@
+import { DocumentType } from "@typegoose/typegoose";
 import { CreateJobDTO, ResponseJobDTO } from "../dto/JobDto";
+import { Job } from "../model/Job";
 
 export class JobTransformer {
-  static toCreateDTO(data: any): CreateJobDTO {
+  static toCreateDTO(data: CreateJobDTO) {
     return {
       title: data.title?.trim(),
       department: data.department?.trim(),
@@ -13,7 +15,7 @@ export class JobTransformer {
     };
   }
 
-  static toResponseDTO(data: any): ResponseJobDTO {
+  static toResponseDTO(data: ResponseJobDTO) {
     return {
       id: data.id.toString(),
       title: data.title,
