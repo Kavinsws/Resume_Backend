@@ -1,20 +1,23 @@
 import { HttpError } from "../error/HttpError";
 import { createJobRepo, findJobByTitle } from "../repository/JobRepo";
+import { JobTransformer } from "../trasnformer/JobTransformer";
 import { createJob } from "../validator/JobSchemaValidator";
 
 export const createJobService = async (data: createJob) => {
   try {
-    const duplicate = await findJobByTitle(data.title);
+    const transformedJob = JobTransformer.toCreateDTO(data);
+    const duplicate = await findJobByTitle(transformedJob.title);
 
     if (duplicate) {
       throw new HttpError(409, "Job already exists");
     }
-    const result = await createJobRepo(data);
+    const result = await createJobRepo(transformedJob);
+    const transformedJobResponse = JobTransformer.toResponseDTO(result);
 
     return {
       statusCode: 201,
       message: "Job created Successfully",
-      data: result,
+      data: transformedJobResponse,
     };
   } catch (error) {
     if (error instanceof HttpError) {
