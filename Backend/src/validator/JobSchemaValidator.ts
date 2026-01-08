@@ -11,3 +11,15 @@ export const createJobSchema = z.object({
 });
 
 export type createJob = z.infer<typeof createJobSchema>
+
+export const responseJobSchema = z.object({
+  title: z.string().min(1, "Title is Required"),
+  department: z.string().min(1, "Department is required"),
+  location: z.string().min(1, "Location is required"),
+  status: z.string().min(1, "Select the status"),
+  headcount: z.number().int().positive(),
+  description: z.string().min(1),
+  requirements: z.string().min(1),
+  createdAt:z.date(),
+  updatedAt:z.date()
+});

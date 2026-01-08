@@ -11,6 +11,7 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
+    "@redocly/cli": "^2.14.3",
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.3",
     "@types/swagger-jsdoc": "^6.0.4",
@@ -25,6 +26,7 @@
     "dev": "nodemon --watch src --exec ts-node src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "swagger:bundle":"redocly bundle src/docs/openapi/openapi.yaml --output src/docs/swaggerbundle.yaml"
   }
 }

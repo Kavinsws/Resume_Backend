@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000
 app.use(express.json())
 
-const swaggerDocument = YAML.load(path.resolve(__dirname,'./docs/openapi.yaml'))
+const swaggerDocument = YAML.load(path.resolve(__dirname,'./docs/swaggerbundle.yaml'))
 app.use('/docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument))
 
 app.use("/api",jobRoutes);

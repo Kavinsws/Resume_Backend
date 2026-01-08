@@ -7,10 +7,11 @@ servers:
   - url: http://localhost:5000/api
     description: Local Development
 paths:
-  $ref: "./paths/Jobs.yaml"
+  /newJob:
+    $ref: "./paths/Jobs.yaml#/~1newJob"
 components:
   schemas:
     JobInput:
-      $ref: "./components/schemas/Job.yaml#/JobInput"
+      $ref: "./components/schemas/jobs/Job.yaml#/JobInput"
     JobResponse:
-      $ref: "./components/schemas/Job.yaml#/JobResponse"
+      $ref: "./components/schemas/jobs/JobResponse.yaml#/JobResponse"
