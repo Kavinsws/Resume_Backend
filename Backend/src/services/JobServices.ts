@@ -11,7 +11,6 @@ export const createJobService = async (data: createJob) => {
       department:transformedJob.department,
       location:transformedJob.location
     }
-    console.log(checkfields)
     const duplicate = await findJobByTitle(checkfields.title,checkfields.department,checkfields.location);
 
     if (duplicate) {
