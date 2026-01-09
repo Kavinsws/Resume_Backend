@@ -1,0 +1,22 @@
+export interface CreateJobDTO {
+  title: string;
+  department: string;
+  location: string;
+  status: string;
+  headcount: number;
+  description: string;
+  requirements: string;
+}
+
+export interface ResponseJobDTO {
+  id: string;
+  title: string;
+  department: string;
+  location: string;
+  status: string;
+  headcount: number;
+  description: string;
+  requirements: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
