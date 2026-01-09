@@ -1,5 +1,5 @@
 import { DocumentType } from "@typegoose/typegoose";
-import { CreateJobDTO, ResponseJobDTO } from "../dto/JobDto";
+import { CreateJobDTO, ResponseJobDTO, UpdateJobDTO } from "../dto/JobDto";
 import { Job } from "../model/Job";
 
 export class JobTransformer {
@@ -15,6 +15,20 @@ export class JobTransformer {
     };
   }
 
+  static toUpdateDTO(data: UpdateJobDTO) {
+    const updateData: UpdateJobDTO = {};
+
+    if (data.title) updateData.title = data.title.trim();
+    if (data.department) updateData.department = data.department.trim();
+    if (data.location) updateData.location = data.location.trim();
+    if (data.status) updateData.status = data.status.trim();
+    if (data.headcount) updateData.headcount = Number(data.headcount);
+    if (data.description) updateData.description = data.description.trim();
+    if (data.requirements) updateData.requirements = data.requirements.trim();
+
+    return updateData;
+  }
+
   static toResponseDTO(data: ResponseJobDTO) {
     return {
       id: data.id.toString(),
@@ -27,6 +41,12 @@ export class JobTransformer {
       requirements: data.requirements,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
+    };
+  }
+
+  static toDeleteResponseDTO(data: any) {
+    return {
+      id: data._id.toString(),
     };
   }
 }

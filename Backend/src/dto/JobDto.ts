@@ -8,6 +8,16 @@ export interface CreateJobDTO {
   requirements: string;
 }
 
+export interface UpdateJobDTO {
+  title?: string;
+  department?: string;
+  location?: string;
+  status?: string;
+  headcount?: number;
+  description?: string;
+  requirements?: string;
+}
+
 export interface ResponseJobDTO {
   id: string;
   title: string;
