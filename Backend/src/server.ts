@@ -6,10 +6,12 @@ import swaggerUi from 'swagger-ui-express'
 import YAML from "yamljs";
 import path from "path";
 import jobRoutes from "./routes/JobRoutes"
+import cors from "cors";
 dotenv.config()
 const app = express();
 const PORT = process.env.PORT || 5000
 app.use(express.json())
+app.use(cors())
 
 const swaggerDocument = YAML.load(path.resolve(__dirname,'./docs/swaggerbundle.yaml'))
 app.use('/docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument))

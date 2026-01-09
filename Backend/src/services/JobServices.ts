@@ -6,7 +6,13 @@ import { createJob } from "../validator/JobSchemaValidator";
 export const createJobService = async (data: createJob) => {
   try {
     const transformedJob = JobTransformer.toCreateDTO(data);
-    const duplicate = await findJobByTitle(transformedJob.title);
+    const checkfields = {
+      title:transformedJob.title,
+      department:transformedJob.department,
+      location:transformedJob.location
+    }
+    console.log(checkfields)
+    const duplicate = await findJobByTitle(checkfields.title,checkfields.department,checkfields.location);
 
     if (duplicate) {
       throw new HttpError(409, "Job already exists");

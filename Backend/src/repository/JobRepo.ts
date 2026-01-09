@@ -10,9 +10,17 @@ export const createJobRepo = async (data: createJob) => {
   }
 };
 
-export const findJobByTitle = async (title: string) => {
+export const findJobByTitle = async (
+  title: string,
+  department: string,
+  location: string
+) => {
   try {
-    return JobDao.findOne({ title });
+    return JobDao.findOne({
+      title: title,
+      department: department,
+      location: location,
+    });
   } catch (error) {
     throw new HttpError(500, "Internal server Error");
   }
