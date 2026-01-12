@@ -52,6 +52,11 @@ paths:
           description: Job ID
           schema:
             type: string
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema: ../components/schemas/jobs/UpdateJob.yaml
           responses:
             '200':
               description: Job updated successfully
@@ -102,7 +107,10 @@ components:
           example: Chennai, India
         status:
           type: enum
-          example: OPEN
+          example:
+            - OPEN
+            - CLOSED
+            - HOLD
         headcount:
           type: integer
           example: 3
@@ -120,11 +128,12 @@ components:
           type: string
           description: Auto generated MongoDB ID
           example: 507f1f77bcf86cd799439011
-          required: true
         message:
           type: string
           description: Message for successfull updation
-          required: true
+      required:
+        - id
+        - message
     Job:
       type: object
       required:

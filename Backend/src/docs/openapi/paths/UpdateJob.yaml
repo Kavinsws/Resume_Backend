@@ -10,6 +10,11 @@ put:
       description: Job ID
       schema:
         type: string
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema: "../components/schemas/jobs/UpdateJob.yaml"
       responses:
         200:
           description: Job updated successfully

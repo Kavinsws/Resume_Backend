@@ -4,8 +4,9 @@ properties:
     type: string
     description: Auto generated MongoDB ID
     example: 507f1f77bcf86cd799439011
-    required: true
   message:
     type: string
     description: Message for successfull updation
-    required: true
+required:
+  - id
+  - message

@@ -12,7 +12,7 @@ properties:
     example: Chennai, India
   status:
     type: enum
-    example: OPEN
+    example: [OPEN, CLOSED, HOLD]
   headcount:
     type: integer
     example: 3
