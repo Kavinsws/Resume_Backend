@@ -8,8 +8,10 @@ export const createJobService = async (data: createJob) => {
     const transformedJob = JobTransformer.toCreateDTO(data);
     const checkfields = {
       title:transformedJob.title,
+      department:transformedJob.department,
+      location:transformedJob.location
     }
-    const duplicate = await findJobByTitle(checkfields.title);
+    const duplicate = await findJobByTitle(checkfields.title,checkfields.department,checkfields.location);
 
     if (duplicate) {
       throw new HttpError(409, "Job already exists");
