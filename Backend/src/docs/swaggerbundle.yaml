@@ -8,99 +8,96 @@ servers:
     description: Local Development
 paths:
   /newJob:
-    /newJob:
-      post:
-        summary: Create a new job
-        tags:
-          - Jobs
-        requestBody:
-          required: true
+    post:
+      summary: Create a new job
+      tags:
+        - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '201':
+          description: Job created successfully
           content:
             application/json:
               schema:
-                $ref: ../components/schemas/jobs/Job.yaml
-        responses:
-          '201':
-            description: Job created successfully
-            content:
-              application/json:
-                schema:
-                  $ref: ../components/schemas/jobs/JobResponse.yaml
-          '400':
-            description: Validation error
-          '409':
-            description: Job already exists
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-                      example: Job already exists
-          '500':
-            description: Internal server error
+                $ref: '#/components/schemas/JobResponse'
+        '400':
+          description: Validation error
+        '409':
+          description: Job already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Job already exists
+        '500':
+          description: Internal server error
 components:
   schemas:
     JobInput:
       $ref: '#/components/schemas/Job'
     JobResponse:
-      JobResponse:
-        type: object
-        properties:
-          id:
-            type: string
-            description: Auto-generated MongoDB ID
-            example: 507f1f77bcf86cd799439011
-          createdAt:
-            type: string
-            format: date-time
-            example: '2024-01-08T10:30:00Z'
-          updatedAt:
-            type: string
-            format: date-time
-            example: '2024-01-08T10:30:00Z'
-        required:
-          - id
-          - createdAt
-          - updatedAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: Auto-generated MongoDB ID
+          example: 507f1f77bcf86cd799439011
+        createdAt:
+          type: string
+          format: date-time
+          example: '2024-01-08T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2024-01-08T10:30:00Z'
+      required:
+        - id
+        - createdAt
+        - updatedAt
     Job:
-      JobInput:
-        type: object
-        required:
-          - title
-          - department
-          - location
-          - status
-          - headcount
-          - description
-          - requirements
-        properties:
-          title:
-            type: string
-            example: Senior Backend Engineer
-          department:
-            type: string
-            example: Engineering
-          location:
-            type: string
-            example: Remote
-          status:
-            type: string
-            enum:
-              - OPEN
-              - CLOSED
-              - HOLD
-            example: OPEN
-          headcount:
-            type: integer
-            minimum: 1
-            example: 3
-          description:
-            type: string
-            description: Detailed job description
-            example: We are looking for a backend engineer
-          requirements:
-            type: string
-            description: Job requirements and skills
-            example: 5+ years Node.js experience
+      type: object
+      required:
+        - title
+        - department
+        - location
+        - status
+        - headcount
+        - description
+        - requirements
+      properties:
+        title:
+          type: string
+          example: Senior Backend Engineer
+        department:
+          type: string
+          example: Engineering
+        location:
+          type: string
+          example: Remote
+        status:
+          type: string
+          enum:
+            - OPEN
+            - CLOSED
+            - HOLD
+          example: OPEN
+        headcount:
+          type: integer
+          minimum: 1
+          example: 3
+        description:
+          type: string
+          description: Detailed job description
+          example: We are looking for a backend engineer
+        requirements:
+          type: string
+          description: Job requirements and skills
+          example: 5+ years Node.js experience
