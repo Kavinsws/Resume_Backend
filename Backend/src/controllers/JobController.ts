@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { createJobService } from "../services/JobServices";
-import { createJobSchema, responseJobSchema } from "../validator/JobSchemaValidator";
+import { responseJobSchema } from "../validator/JobSchemaValidator";
 
 export const createJobController = async (
   req: Request,

@@ -7,8 +7,6 @@ import {
 
 @index({ location: 1 })
 @index({ title: 1, status: 1 })
-@index({ title: 1 })
-@index({ title: 1, description: 1 ,location:1}, { unique: true })
 @modelOptions({
   schemaOptions: {
     timestamps: true,
