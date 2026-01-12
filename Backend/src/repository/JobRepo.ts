@@ -25,3 +25,13 @@ export const findJobByTitle = async (
     throw new HttpError(500, "Internal server Error");
   }
 };
+
+
+
+export const getAllJobs = async()=>{
+  try{
+    return JobDao.find({});
+  }catch(error){
+    throw new HttpError(500,"Failed to fetch the jobs");
+  }
+}

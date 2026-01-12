@@ -1,5 +1,5 @@
 import { HttpError } from "../error/HttpError";
-import { createJobRepo, findJobByTitle } from "../repository/JobRepo";
+import { createJobRepo, findJobByTitle, getAllJobs } from "../repository/JobRepo";
 import { JobTransformer } from "../trasnformer/JobTransformer";
 import { createJob } from "../validator/JobSchemaValidator";
 
@@ -31,3 +31,25 @@ export const createJobService = async (data: createJob) => {
     throw new HttpError(500, "Failed to create job");
   }
 };
+
+export const getAllJobsService = async ()=>{
+  try{
+    const result = await getAllJobs();
+    if(!result){
+      throw new HttpError(404,"No Jobs found");
+    }
+
+    const transformedResponse = JobTransformer.allJobsResponse(result);
+    return{
+      statusCode : 200,
+      message:"Jobs Fetched Successfully",
+      data:transformedResponse
+    }
+  }
+  catch(error){
+    if(error instanceof HttpError){
+      throw error;
+    }
+    throw new HttpError(500,"Failed to fetch the jobs");
+  }
+}

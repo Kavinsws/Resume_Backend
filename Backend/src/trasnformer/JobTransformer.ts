@@ -29,4 +29,8 @@ export class JobTransformer {
       updatedAt: data.updatedAt,
     };
   }
+
+  static allJobsResponse(data : ResponseJobDTO[]){
+    return data.map((datas)=>this.toResponseDTO(datas))
+  }
 }
