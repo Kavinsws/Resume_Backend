@@ -8,10 +8,10 @@ servers:
     description: Local Development
 paths:
   /newJob:
-    $ref: "./paths/Jobs.yaml#/~1newJob"
+    $ref: "./paths/Jobs.yaml"
 components:
   schemas:
     JobInput:
-      $ref: "./components/schemas/jobs/Job.yaml#/JobInput"
+      $ref: "./components/schemas/jobs/Job.yaml"
     JobResponse:
-      $ref: "./components/schemas/jobs/JobResponse.yaml#/JobResponse"
+      $ref: "./components/schemas/jobs/JobResponse.yaml"
