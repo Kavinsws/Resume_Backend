@@ -1,0 +1,24 @@
+put:
+  summary: Update Job
+  tags:
+    - Jobs
+  description: Update an existing job by Id
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Job ID
+      schema:
+        type: string
+      responses:
+        200:
+          description: Job updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "../components/schemas/jobs/UpdateJobResponse.yaml"
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Job updated successfully
