@@ -1,32 +1,31 @@
-/newJob:
-  post:
-    summary: Create a new job
-    tags:
-      - Jobs
-    requestBody:
-      required: true
+post:
+  summary: Create a new job
+  tags:
+    - Jobs
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/jobs/CreateJob.yaml"
+  responses:
+    "201":
+      description: Job created successfully
       content:
         application/json:
           schema:
-            $ref: "../components/schemas/jobs/Job.yaml"
-    responses:
-      "201":
-        description: Job created successfully
-        content:
-          application/json:
-            schema:
-              $ref: "../components/schemas/jobs/JobResponse.yaml"
-      "409":
-        description: Job already exists
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                message:
-                  type: string
-                  example: "Job already exists"
-      "400":
-        description: Validation error
-      "500":
-        description: Internal server error
+            $ref: "../components/schemas/jobs/CreateJobResponse.yaml"
+    "409":
+      description: Job already exists
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Job already exists"
+    "400":
+      description: Validation error
+    "500":
+      description: Internal server error
