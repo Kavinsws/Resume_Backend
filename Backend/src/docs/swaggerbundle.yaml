@@ -101,7 +101,7 @@ components:
           type: string
           example: Chennai, India
         status:
-          type: string
+          type: enum
           example: OPEN
         headcount:
           type: integer
