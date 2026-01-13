@@ -1,7 +1,8 @@
-import { JobDao } from "../dao/JobDao";
+import { JobDao, JobDocument, UpdateJobDAO } from "../dao/JobDao";
 import { HttpError } from "../error/HttpError";
-import { JobModel } from "../model/Job";
+import { Job, JobModel } from "../model/Job";
 import { createJob } from "../validator/JobSchemaValidator";
+import { updateJob } from "../validator/JobSchemaValidator";
 
 export const createJobRepo = async (data: createJob) => {
   try {
@@ -20,5 +21,23 @@ export const findJobByTitle = async (
     });
   } catch (error) {
     throw new HttpError(500, "Internal server Error");
+  }
+};
+
+export const findJobById = async (id: string) :Promise<JobDocument| null> => {
+  try {
+    return await JobDao.findById(id);
+  } catch (error) {
+    throw new HttpError(500, "Failed to locate the job");
+  }
+};
+export const updateJobRepo = async (id: string, data: UpdateJobDAO):Promise<JobDocument|null> => {
+  try {
+    return await JobModel.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+  } catch (error) {
+    throw new HttpError(500, "Failed to update job");
   }
 };

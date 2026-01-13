@@ -5,6 +5,12 @@ import {
   modelOptions,
 } from "@typegoose/typegoose";
 
+enum Status{
+  OPEN = "OPEN",
+  CLOSED= "CLOSED",
+  HOLD= "HOLD"
+}
+
 @index({ location: 1 })
 @index({ title: 1, status: 1 })
 @modelOptions({
@@ -22,8 +28,8 @@ export class Job {
   @prop({ required: true })
   public location!: string;
 
-  @prop({ required: true })
-  public status!: string;
+  @prop({ required: true,enum:Status,default:Status.OPEN})
+  public status!: Status;
 
   @prop({ required: true })
   public headcount!: number;
