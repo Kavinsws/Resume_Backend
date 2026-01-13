@@ -11,8 +11,9 @@ properties:
     type: string
     example: Chennai, India
   status:
-    type: enum
-    example: [OPEN, CLOSED, HOLD]
+    type: string
+    enum: [OPEN, CLOSED, HOLD]
+    example: "OPEN"
   headcount:
     type: integer
     example: 3
