@@ -1,0 +1,6 @@
+type: object
+properties:
+  message:
+    type: string
+    description: Message for successfull deletion of job
+    example: Job deleted successfully
