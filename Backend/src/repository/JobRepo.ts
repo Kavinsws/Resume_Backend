@@ -41,3 +41,12 @@ export const updateJobRepo = async (id: string, data: UpdateJobDAO):Promise<JobD
     throw new HttpError(500, "Failed to update job");
   }
 };
+
+export const deleteJobRepo = async(id : string) : Promise<JobDocument | null> =>{
+  try{
+    return await JobModel.findByIdAndDelete(id);
+  }
+  catch(error){
+    throw new HttpError(500,"Failed to delete the job");
+  }
+}
