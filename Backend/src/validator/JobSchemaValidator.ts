@@ -45,3 +45,18 @@ export const paramIdSchema = z.object({
 })
 
 export type paramType = z.infer<typeof paramIdSchema>;
+
+export const getJobsResponse = z.object({
+  id:z.string().min(24,"Invalid id"),
+  title: z.string().min(1, "Title is Required"),
+  department: z.string().min(1, "Department is required"),
+  location: z.string().min(1, "Location is required"),
+  status: z.enum(["OPEN","CLOSED","HOLD"]),
+  headcount: z.number().int().positive(),
+  description: z.string().min(1),
+  requirements: z.string().min(1),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+export const getJobsResponseSchema = z.array(getJobsResponse);

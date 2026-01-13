@@ -45,3 +45,9 @@ export interface deleteJobResponseDTO{
   statusCode:number,
   message:string
 }
+
+export interface getJobsResponseDTO{
+  statusCode:number,
+  message:string,
+  data:ResponseJobDTO[]
+}
