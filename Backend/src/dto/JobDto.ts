@@ -40,3 +40,8 @@ export interface updateJobRes{
   message:string,
   data:updateJobReposnseDTO
 }
+
+export interface deleteJobResponseDTO{
+  statusCode:number,
+  message:string
+}

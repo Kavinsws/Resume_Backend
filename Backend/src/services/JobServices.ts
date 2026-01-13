@@ -1,10 +1,10 @@
 import { HttpError } from "../error/HttpError";
-import { createJobRepo, findJobByTitle } from "../repository/JobRepo";
+import { createJobRepo, deleteJobRepo, findJobByTitle } from "../repository/JobRepo";
 import { JobTransformer } from "../trasnformer/JobTransformer";
 import { createJob } from "../validator/JobSchemaValidator";
 import { updateJob } from "../validator/JobSchemaValidator";
 import { findJobById,updateJobRepo } from "../repository/JobRepo";
-import { updateJobRes } from "../dto/JobDto";
+import { deleteJobResponseDTO, updateJobRes } from "../dto/JobDto";
 
 export const createJobService = async (data: createJob) => {
   try {
@@ -59,3 +59,28 @@ export const updateJobService = async (id: string, data: updateJob):Promise<upda
     throw new HttpError(500, "Failed to update Job");
   }
 };
+
+export const deleteJobService = async (id:string):Promise<deleteJobResponseDTO>=>{
+  try{
+    const isJobExists = await findJobById(id);
+    if(!isJobExists){
+      throw new HttpError(404,"Job not found")
+    }
+
+    const result = await deleteJobRepo(id);
+    if(!result){
+      throw new HttpError(500,"Failed to delete the job");
+    }
+
+    return{
+      statusCode:200,
+      message:"Job deleted successfully"
+    }
+  }
+  catch(error){
+    if(error instanceof HttpError){
+      throw error
+    }
+    throw new HttpError(500,"Failed to delete the job")
+  }
+}
