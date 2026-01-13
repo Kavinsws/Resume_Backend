@@ -1,0 +1,23 @@
+delete:
+  summary: Delete a job
+  tags:
+    - Jobs
+  description:  Delete an job by Id
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description:  Job ID
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Job deletion successfull
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/jobs/DeleteJobResponse.yaml"
+    "400":
+      description: Job not found
+    "500":
+      description: Failed to delete the job

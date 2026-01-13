@@ -69,6 +69,30 @@ paths:
           description: Job not found
         '500':
           description: Internal server error
+  /deleteJob/{id}:
+    delete:
+      summary: Delete a job
+      tags:
+        - Jobs
+      description: Delete an job by Id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Job ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job deletion successfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteJobResponse'
+        '400':
+          description: Job not found
+        '500':
+          description: Failed to delete the job
 components:
   schemas:
     JobInput:
@@ -136,6 +160,13 @@ components:
       required:
         - id
         - message
+    DeleteJobResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message for successfull deletion of job
+          example: Job deleted successfully
     Job:
       type: object
       required:

@@ -11,6 +11,8 @@ paths:
     $ref: "./paths/Jobs.yaml"
   /updateJob/{id}:
     $ref: "./paths/UpdateJob.yaml"
+  /deleteJob/{id}:
+    $ref: "./paths/DeleteJob.yaml"
 components:
   schemas:
     JobInput:
@@ -21,3 +23,5 @@ components:
       $ref: "./components/schemas/jobs/UpdateJob.yaml"
     UpdateJobResponse:
       $ref: "./components/schemas/jobs/UpdateJobResponse.yaml"
+    DeleteJobResponse:
+      $ref: "./components/schemas/jobs/DeleteJobResponse.yaml"
