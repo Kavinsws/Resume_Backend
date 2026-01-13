@@ -39,3 +39,9 @@ export type updateJob = z.infer<typeof updateJobSchema>;
 export const updateJobResponseSchema = z.object({
   id: z.string().min(24, "Invalid id"),
 });
+
+export const paramIdSchema = z.object({
+  id: z.string().min(24, "Invalid id"),
+})
+
+export type paramType = z.infer<typeof paramIdSchema>;
