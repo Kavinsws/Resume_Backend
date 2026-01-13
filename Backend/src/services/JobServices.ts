@@ -4,6 +4,7 @@ import { JobTransformer } from "../trasnformer/JobTransformer";
 import { createJob } from "../validator/JobSchemaValidator";
 import { updateJob } from "../validator/JobSchemaValidator";
 import { findJobById,updateJobRepo } from "../repository/JobRepo";
+import { updateJobRes } from "../dto/JobDto";
 
 export const createJobService = async (data: createJob) => {
   try {
@@ -32,7 +33,7 @@ export const createJobService = async (data: createJob) => {
   }
 };
 
-export const updateJobService = async (id: string, data: updateJob) => {
+export const updateJobService = async (id: string, data: updateJob):Promise<updateJobRes> => {
   try {
     const transformedJob = JobTransformer.updateJob(data);
     const isJobExists = await findJobById(id);

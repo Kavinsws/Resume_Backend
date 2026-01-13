@@ -25,7 +25,7 @@ export interface UpdateJobDTO {
   title: string;
   department: string;
   location: string;
-  status: string;
+  status: "OPEN" | "CLOSED" | "HOLD";
   headcount: number;
   description: string;
   requirements: string;
@@ -33,4 +33,10 @@ export interface UpdateJobDTO {
 
 export interface updateJobReposnseDTO{
   id:string
+}
+
+export interface updateJobRes{
+  statusCode: number,
+  message:string,
+  data:updateJobReposnseDTO
 }

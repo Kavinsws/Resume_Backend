@@ -1,6 +1,7 @@
 import { DocumentType } from "@typegoose/typegoose";
 import { CreateJobDTO, ResponseJobDTO,UpdateJobDTO, updateJobReposnseDTO } from "../dto/JobDto";
 import { Job } from "../model/Job";
+import { JobDocument } from "../dao/JobDao";
 
 export class JobTransformer {
   static toCreateDTO(data: CreateJobDTO) {
@@ -34,16 +35,16 @@ export class JobTransformer {
       title: data.title.trim(),
       department: data.department.trim(),
       location: data.location.trim(),
-      status: data.status.trim(),
+      status: data.status,
       headcount: Number(data.headcount),
       description: data.description.trim(),
       requirements: data.requirements.trim(),
     };
   }
 
-  static updateJobResponse(data: updateJobReposnseDTO) {
+  static updateJobResponse(data: JobDocument):updateJobReposnseDTO{
     return {
-      id: data.id.toString(),
+      id: data._id.toString(),
     };
   }
 }
