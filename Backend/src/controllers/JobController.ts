@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { createJobService, updateJobService } from "../services/JobServices";
+import { createJobService } from "../services/JobServices";
 import { responseJobSchema } from "../validator/JobSchemaValidator";
 
 export const createJobController = async (
@@ -22,10 +22,3 @@ export const createJobController = async (
         next(error)
     }
 };
-
-export const updateJobController = async(req:Request,res:Response,next:NextFunction)=>{
-    try{
-        const {id} = req.params
-        const result = await updateJobService(id)
-    }
-}
