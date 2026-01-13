@@ -52,23 +52,23 @@ paths:
           description: Job ID
           schema:
             type: string
-          requestBody:
-            required: true
-            content:
-              application/json:
-                schema: ../components/schemas/jobs/UpdateJob.yaml
-          responses:
-            '200':
-              description: Job updated successfully
-              content:
-                application/json:
-                  schema:
-                    $ref: ../components/schemas/jobs/UpdateJobResponse.yaml
-                    type: object
-                    properties:
-                      message:
-                        type: string
-                        example: Job updated successfully
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJob'
+      responses:
+        '200':
+          description: Job updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateJobResponse'
+        '404':
+          description: Job not found
+        '500':
+          description: Internal server error
 components:
   schemas:
     JobInput:
@@ -131,6 +131,7 @@ components:
         message:
           type: string
           description: Message for successfull updation
+          example: Job updated successfully
       required:
         - id
         - message
