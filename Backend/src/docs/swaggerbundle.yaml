@@ -299,6 +299,6 @@ components:
     ServerErrorResponse:
       type: object
       properties:
-        message: null
-        type: string
-        example: Failed to fetch jobs
+        message:
+          type: string
+          example: Failed to fetch jobs
