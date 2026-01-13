@@ -1,0 +1,29 @@
+put:
+  summary: Update Job
+  tags:
+    - Jobs
+  description: Update an existing job by Id
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Job ID
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/jobs/UpdateJob.yaml"
+  responses:
+    "200":
+      description: Job updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/jobs/UpdateJobResponse.yaml"
+    "404":
+      description: Job not found
+    "500":
+      description: Internal server error

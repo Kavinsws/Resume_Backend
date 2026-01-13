@@ -9,9 +9,15 @@ servers:
 paths:
   /newJob:
     $ref: "./paths/Jobs.yaml"
+  /updateJob/{id}:
+    $ref: "./paths/UpdateJob.yaml"
 components:
   schemas:
     JobInput:
       $ref: "./components/schemas/jobs/Job.yaml"
     JobResponse:
       $ref: "./components/schemas/jobs/JobResponse.yaml"
+    UpdateJob:
+      $ref: "./components/schemas/jobs/UpdateJob.yaml"
+    UpdateJobResponse:
+      $ref: "./components/schemas/jobs/UpdateJobResponse.yaml"

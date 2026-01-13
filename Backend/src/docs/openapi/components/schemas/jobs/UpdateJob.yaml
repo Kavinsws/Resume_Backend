@@ -1,0 +1,26 @@
+type: object
+description: Fields that can be updated for a job
+properties:
+  title:
+    type: string
+    example: Backend Developer
+  department:
+    type: string
+    example: Engineering
+  location:
+    type: string
+    example: Chennai, India
+  status:
+    type: string
+    enum: [OPEN, CLOSED, HOLD]
+    example: "OPEN"
+  headcount:
+    type: integer
+    example: 3
+    minimum: 1
+  description:
+    type: string
+    example: Responsible for backend APIs
+  requirements:
+    type: string
+    example: Node.js, MongoDB, REST APIs
