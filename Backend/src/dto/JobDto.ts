@@ -20,3 +20,17 @@ export interface ResponseJobDTO {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface UpdateJobDTO {
+  title: string;
+  department: string;
+  location: string;
+  status: string;
+  headcount: number;
+  description: string;
+  requirements: string;
+}
+
+export interface updateJobReposnseDTO{
+  id:string
+}
