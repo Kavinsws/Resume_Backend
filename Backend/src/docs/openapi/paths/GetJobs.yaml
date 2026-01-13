@@ -1,0 +1,31 @@
+get:
+  summary: Get all jobs
+  tags:
+    -  Jobs
+  responses:
+    "200":
+      description: Jobs fetched successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/jobs/GetJobResponse.yaml"
+    "404":
+      description: Jobs not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: No jobs are available
+    "500":
+      description: Error while fetching jobs 
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example:  Failed to fetch jobs          

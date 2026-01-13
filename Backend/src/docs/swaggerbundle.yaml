@@ -93,6 +93,38 @@ paths:
           description: Job not found
         '500':
           description: Failed to delete the job
+  /getAllJobs:
+    get:
+      summary: Get all jobs
+      tags:
+        - Jobs
+      responses:
+        '200':
+          description: Jobs fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetJobResponse'
+        '404':
+          description: Jobs not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No jobs are available
+        '500':
+          description: Error while fetching jobs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to fetch jobs
 components:
   schemas:
     JobInput:
@@ -167,6 +199,8 @@ components:
           type: string
           description: Message for successfull deletion of job
           example: Job deleted successfully
+    GetAllJobsResponse:
+      $ref: '#/components/schemas/GetJobResponse'
     Job:
       type: object
       required:
@@ -206,3 +240,47 @@ components:
           type: string
           description: Job requirements and skills
           example: 5+ years Node.js experience
+    GetJobResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: 507f1f77bcf86cd799439011
+          title:
+            type: string
+            example: Senior Backend Engineer
+          department:
+            type: string
+            example: Engineering
+          location:
+            type: string
+            example: Remote
+          status:
+            type: string
+            enum:
+              - OPEN
+              - CLOSED
+              - HOLD
+            example: OPEN
+          headcount:
+            type: integer
+            minimum: 1
+            example: 3
+          description:
+            type: string
+            description: Detailed job description
+            example: We are looking for a backend engineer
+          requirements:
+            type: string
+            description: Job requirements and skills
+            example: 5+ years Node.js experience
+          createdAt:
+            type: string
+            format: date-time
+            example: '2024-01-08T10:30:00Z'
+          updatedAt:
+            type: string
+            format: date-time
+            example: '2024-01-08T10:30:00Z'
