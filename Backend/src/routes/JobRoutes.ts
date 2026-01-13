@@ -6,5 +6,6 @@ import { createJobController } from "../controllers/JobController";
 const router = Router();
 
 router.post("/newJob",validate(createJobSchema),createJobController);
+router.put("/updateJob/:id",)
 
 export default router
