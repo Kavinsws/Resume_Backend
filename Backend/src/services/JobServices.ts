@@ -85,9 +85,10 @@ export const deleteJobService = async (id:string):Promise<deleteJobResponseDTO>=
   }
 }
 
-export const getAllJobsService = async():Promise<getJobsResponseDTO>=>{
+export const getAllJobsService = async(page:number,limit:number):Promise<getJobsResponseDTO>=>{
   try{
-    const result = await getAllJobsRepo();
+    const skip = (page-1)*limit;
+    const result = await getAllJobsRepo(skip,limit);
 
     if(!result || result.length===0){
       throw new HttpError(404,"No Jobs are available")

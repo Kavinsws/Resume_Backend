@@ -51,9 +51,9 @@ export const deleteJobRepo = async(id : string) : Promise<JobDocument | null> =>
   }
 }
 
-export const getAllJobsRepo = async (): Promise<JobDocument[] | null> => {
+export const getAllJobsRepo = async (skip:number,limit:number): Promise<JobDocument[] | null> => {
   try {
-    return await JobDao.find();
+    return await JobDao.find().skip(skip).limit(limit);
   } catch (error) {
     throw new HttpError(500, "Failed to getJobs");
   }

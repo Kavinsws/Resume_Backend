@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { number, z } from "zod";
 
 export const createJobSchema = z.object({
   title: z.string().min(1, "Title is Required"),
@@ -60,3 +60,8 @@ export const getJobsResponse = z.object({
 });
 
 export const getJobsResponseSchema = z.array(getJobsResponse);
+
+export const queryParamsSchema = z.object({
+  page:z.coerce.number().int().min(1).optional().default(1),
+  limit:z.coerce.number().int().max(15).optional().default(3)
+})

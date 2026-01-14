@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { validate, validateParams } from "../middleware/Validation";
-import { createJobSchema, paramIdSchema } from "../validator/JobSchemaValidator";
+import { createJobSchema, paramIdSchema, queryParamsSchema } from "../validator/JobSchemaValidator";
 import { createJobController, deleteJobController, getJobsController, updateJobController } from "../controllers/JobController";
 
 const router = Router();
