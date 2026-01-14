@@ -28,10 +28,10 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../components/schemas/jobs/NotFoundErrorResponse.yaml"
+            $ref: "../components/schemas/jobs/ErrorResponse.yaml"
     "500":
       description: Error while fetching jobs 
       content:
         application/json:
           schema:
-            $ref: "../components/schemas/jobs/NotFoundErrorResponse.yaml"
+            $ref: "../components/schemas/jobs/ErrorResponse.yaml"

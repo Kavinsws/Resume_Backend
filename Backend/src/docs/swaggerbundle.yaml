@@ -124,13 +124,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundErrorResponse'
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Error while fetching jobs
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundErrorResponse'
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     JobInput:
@@ -290,7 +290,7 @@ components:
             type: string
             format: date-time
             example: '2024-01-08T10:30:00Z'
-    NotFoundErrorResponse:
+    ErrorResponse:
       type: object
       properties:
         message:
