@@ -34,4 +34,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../components/schemas/jobs/ServerErrorResponse.yaml"
+            $ref: "../components/schemas/jobs/NotFoundErrorResponse.yaml"

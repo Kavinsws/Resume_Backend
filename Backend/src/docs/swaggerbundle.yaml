@@ -130,7 +130,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServerErrorResponse'
+                $ref: '#/components/schemas/NotFoundErrorResponse'
 components:
   schemas:
     JobInput:
@@ -296,9 +296,3 @@ components:
         message:
           type: string
           example: No jobs are available
-    ServerErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          example: Failed to fetch jobs
