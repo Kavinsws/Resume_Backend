@@ -58,3 +58,12 @@ export const getAllJobsRepo = async (skip:number,limit:number): Promise<JobDocum
     throw new HttpError(500, "Failed to getJobs");
   }
 };
+
+export const getAllJobsCountRepo = async():Promise<number> =>{
+  try{
+    return await JobDao.countDocuments();
+  }
+  catch(error){
+    throw new HttpError(500,"Failed to get job count");
+  }
+}

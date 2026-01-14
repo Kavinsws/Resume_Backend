@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { createJobService, deleteJobService, getAllJobsService, updateJobService } from "../services/JobServices";
-import { getJobsResponseSchema, queryParamsSchema, responseJobSchema, updateJobResponseSchema } from "../validator/JobSchemaValidator";
+import { getJobResponseMetricsSchema, getJobsResponseSchema, queryParamsSchema, responseJobSchema, updateJobResponseSchema } from "../validator/JobSchemaValidator";
 
 export const createJobController = async (
   req: Request,
@@ -63,8 +63,10 @@ export const getJobsController = async(req:Request,res:Response,next:NextFunctio
         const result = await getAllJobsService(Number(page),Number(limit));
         if(result){
             const safeRes = getJobsResponseSchema.parse(result.data);
+            const safeResMetrics = getJobResponseMetricsSchema.parse(result.metrics);
             res.status(result.statusCode).json({
                 message:result.message,
+                metrics:safeResMetrics,
                 data:safeRes
             })
         }

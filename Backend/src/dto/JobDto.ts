@@ -46,8 +46,15 @@ export interface deleteJobResponseDTO{
   message:string
 }
 
+export interface getJobResponseMetrics{
+  currentPage:number,
+  totalPages:number,
+  totalResults:number
+}
+
 export interface getJobsResponseDTO{
   statusCode:number,
   message:string,
+  metrics:getJobResponseMetrics
   data:ResponseJobDTO[]
 }

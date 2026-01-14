@@ -1,5 +1,5 @@
 import { HttpError } from "../error/HttpError";
-import { createJobRepo, deleteJobRepo, findJobByTitle, getAllJobsRepo } from "../repository/JobRepo";
+import { createJobRepo, deleteJobRepo, findJobByTitle, getAllJobsCountRepo, getAllJobsRepo } from "../repository/JobRepo";
 import { JobTransformer } from "../trasnformer/JobTransformer";
 import { createJob } from "../validator/JobSchemaValidator";
 import { updateJob } from "../validator/JobSchemaValidator";
@@ -87,15 +87,24 @@ export const deleteJobService = async (id:string):Promise<deleteJobResponseDTO>=
 
 export const getAllJobsService = async(page:number,limit:number):Promise<getJobsResponseDTO>=>{
   try{
+    const totalresults = await getAllJobsCountRepo();
     const skip = (page-1)*limit;
     const result = await getAllJobsRepo(skip,limit);
+    const totalPages = Math.ceil(totalresults/limit);
 
     if(!result || result.length===0){
       throw new HttpError(404,"No Jobs are available")
     }
+    const metricsData = {
+      currentPage:page,
+      totalPages:totalPages,
+      totalResults:totalresults
+    }
+    const transformgetJobMetrics = JobTransformer.getJobResponseMetric(metricsData);
     const transformedgetJobs = JobTransformer.getJobsResponsemap(result);
     return{
       statusCode:200,
+      metrics:transformgetJobMetrics,
       message:"Fetched jobs successfully",
       data:transformedgetJobs
     }

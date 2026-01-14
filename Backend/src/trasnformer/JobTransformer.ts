@@ -1,5 +1,5 @@
 import { DocumentType } from "@typegoose/typegoose";
-import { CreateJobDTO, ResponseJobDTO,UpdateJobDTO, updateJobReposnseDTO } from "../dto/JobDto";
+import { CreateJobDTO, getJobResponseMetrics, ResponseJobDTO,UpdateJobDTO, updateJobReposnseDTO } from "../dto/JobDto";
 import { Job } from "../model/Job";
 import { JobDocument } from "../dao/JobDao";
 import { da } from "zod/v4/locales";
@@ -66,5 +66,13 @@ export class JobTransformer {
 
   static getJobsResponsemap(data: JobDocument[]): ResponseJobDTO[] {
     return data.map((datas) => this.getJobResponse(datas));
+  }
+
+  static getJobResponseMetric(data:getJobResponseMetrics):getJobResponseMetrics{
+    return{
+      currentPage:data.currentPage,
+      totalPages:data.totalPages,
+      totalResults:data.totalResults
+    }
   }
 }
