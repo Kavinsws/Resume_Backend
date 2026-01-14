@@ -63,5 +63,5 @@ export const getJobsResponseSchema = z.array(getJobsResponse);
 
 export const queryParamsSchema = z.object({
   page:z.coerce.number().int().min(1).optional().default(1),
-  limit:z.coerce.number().int().max(15).optional().default(3)
+  limit:z.coerce.number().int().min(1).max(15).optional().default(3)
 })
