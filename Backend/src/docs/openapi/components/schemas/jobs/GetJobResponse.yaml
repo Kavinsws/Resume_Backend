@@ -1,40 +1,53 @@
-type: array
-items:
-  type: object
-  properties:
-    id:
-      type: string
-      example: "507f1f77bcf86cd799439011"
-    title:
-      type: string
-      example: "Senior Backend Engineer"
-    department:
-      type: string
-      example: "Engineering"
-    location:
-      type: string
-      example: "Remote"
-    status:
-      type: string
-      enum: [OPEN, CLOSED, HOLD]
-      example: "OPEN"
-    headcount:
-      type: integer
-      minimum: 1
-      example: 3
-    description:
-      type: string
-      description: Detailed job description
-      example: "We are looking for a backend engineer"
-    requirements:
-      type: string
-      description: Job requirements and skills
-      example: "5+ years Node.js experience"
-    createdAt:
-      type: string
-      format: date-time
-      example: "2024-01-08T10:30:00Z"
-    updatedAt:
-      type: string
-      format: date-time
-      example: "2024-01-08T10:30:00Z"
+type: object
+properties:
+  currentPage:
+    type: integer
+    example: 1
+  totalPages:
+    type: integer
+    example: 5
+  totalResults:
+    type: integer
+    example: 30
+  
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "507f1f77bcf86cd799439011"
+        title:
+          type: string
+          example: "Senior Backend Engineer"
+        department:
+          type: string
+          example: "Engineering"
+        location:
+          type: string
+          example: "Remote"
+        status:
+          type: string
+          enum: [OPEN, CLOSED, HOLD]
+          example: "OPEN"
+        headcount:
+          type: integer
+          minimum: 1
+          example: 3
+        description:
+          type: string
+          description: Detailed job description
+          example: "We are looking for a backend engineer"
+        requirements:
+          type: string
+          description: Job requirements and skills
+          example: "5+ years Node.js experience"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-01-08T10:30:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2024-01-08T10:30:00Z"
