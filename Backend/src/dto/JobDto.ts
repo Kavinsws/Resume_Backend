@@ -45,3 +45,16 @@ export interface deleteJobResponseDTO{
   statusCode:number,
   message:string
 }
+
+export interface getJobResponsePaginationDTO{
+  currentPage:number,
+  totalPages:number,
+  totalResults:number
+}
+
+export interface getJobsResponseDTO{
+  statusCode:number,
+  message:string,
+  pagination:getJobResponsePaginationDTO
+  data:ResponseJobDTO[]
+}

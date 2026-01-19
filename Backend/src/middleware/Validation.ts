@@ -1,6 +1,7 @@
 import { ZodError, ZodType } from "zod";
 import { Request, Response, NextFunction } from "express";
 import { createJob, paramType } from "../validator/JobSchemaValidator";
+import { ParsedUrlQuery, ParsedUrlQueryInput } from "node:querystring";
 
 export const validate =
   (schema: ZodType<createJob>) =>

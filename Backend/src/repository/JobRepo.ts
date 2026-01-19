@@ -47,6 +47,23 @@ export const deleteJobRepo = async(id : string) : Promise<JobDocument | null> =>
     return await JobModel.findByIdAndDelete(id);
   }
   catch(error){
-    throw new HttpError(500,"Failed to delete the job");
+    throw new HttpError(500,"Failed to delete the Job")
+  }
+}
+
+export const getAllJobsRepo = async (skip:number,limit:number): Promise<JobDocument[] | null> => {
+  try {
+    return await JobDao.find().skip(skip).limit(limit);
+  } catch (error) {
+    throw new HttpError(500, "Failed to getJobs");
+  }
+};
+
+export const getAllJobsCountRepo = async():Promise<number> =>{
+  try{
+    return await JobDao.countDocuments();
+  }
+  catch(error){
+    throw new HttpError(500,"Failed to get job count");
   }
 }
