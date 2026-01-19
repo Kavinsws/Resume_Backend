@@ -66,7 +66,7 @@ export const queryParamsSchema = z.object({
   limit:z.coerce.number().int().min(1).max(15).optional().default(3)
 })
 
-export const getJobResponseMetricsSchema = z.object({
+export const getJobResponsePaginationSchema = z.object({
   currentPage: z.number().int().positive().min(1),
   totalPages: z.number().int().positive().min(1),
   totalResults: z.number().int().positive().min(0),

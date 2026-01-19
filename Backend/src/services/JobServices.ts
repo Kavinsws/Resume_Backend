@@ -95,16 +95,16 @@ export const getAllJobsService = async(page:number,limit:number):Promise<getJobs
     if(!result || result.length===0){
       throw new HttpError(404,"No Jobs are available")
     }
-    const metricsData = {
+    const paginationData = {
       currentPage:page,
       totalPages:totalPages,
       totalResults:totalresults
     }
-    const transformgetJobMetrics = JobTransformer.getJobResponseMetric(metricsData);
+    const transformgetJobMetrics = JobTransformer.getJobResponsePagination(paginationData);
     const transformedgetJobs = JobTransformer.getJobsResponsemap(result);
     return{
       statusCode:200,
-      metrics:transformgetJobMetrics,
+      pagination:transformgetJobMetrics,
       message:"Fetched jobs successfully",
       data:transformedgetJobs
     }
