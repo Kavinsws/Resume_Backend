@@ -1,0 +1,17 @@
+get:
+  summary: Get Job status count
+  tags:
+    -  Jobs
+  responses:
+    "200":
+      description: Job status counts fetched successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/jobs/GetJobCountsResponse.yaml"
+    "500":
+      description: Failed to fetch jobs status counts
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/jobs/ErrorResponse.yaml"

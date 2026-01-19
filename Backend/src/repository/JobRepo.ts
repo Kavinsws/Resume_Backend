@@ -1,4 +1,5 @@
 import { JobDao, JobDocument, UpdateJobDAO } from "../dao/JobDao";
+import { getJobCount } from "../dto/JobDto";
 import { HttpError } from "../error/HttpError";
 import { Job, JobModel } from "../model/Job";
 import { createJob } from "../validator/JobSchemaValidator";
@@ -65,5 +66,19 @@ export const getAllJobsCountRepo = async():Promise<number> =>{
   }
   catch(error){
     throw new HttpError(500,"Failed to get job count");
+  }
+}
+
+export const getJobCountsRepo = async():Promise<getJobCount>=>{
+  try{
+    const totalJobs = await JobDao.countDocuments();
+    const openJobs = await JobDao.countDocuments({status:"OPEN"});
+    const closedJobs = await JobDao.countDocuments({status:"CLOSED"});
+    const holdJobs = await JobDao.countDocuments({status:"HOLD"});
+
+    return{totalJobs,openJobs,closedJobs,holdJobs}
+  }
+  catch(error){
+    throw new HttpError(500,"Failed to count the jobs");
   }
 }

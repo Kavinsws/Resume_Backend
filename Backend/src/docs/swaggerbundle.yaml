@@ -131,6 +131,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /getJobCounts:
+    get:
+      summary: Get Job status count
+      tags:
+        - Jobs
+      responses:
+        '200':
+          description: Job status counts fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetJobCountsResponse'
+        '500':
+          description: Failed to fetch jobs status counts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     JobInput:
@@ -207,6 +225,8 @@ components:
           example: Job deleted successfully
     GetAllJobsResponse:
       $ref: '#/components/schemas/GetJobResponse'
+    GetJobCountResponse:
+      $ref: '#/components/schemas/GetJobCountsResponse'
     Job:
       type: object
       required:
@@ -308,3 +328,21 @@ components:
         message:
           type: string
           example: No jobs are available
+    GetJobCountsResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Job status count fetched successfully
+        totalJobs:
+          type: integer
+          example: 5
+        openJobs:
+          type: integer
+          example: 7
+        closedJobs:
+          type: integer
+          example: 4
+        holdJobs:
+          type: integer
+          example: 2
