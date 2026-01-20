@@ -19,7 +19,7 @@ properties:
     example: "Remote"
   status:
     type: string
-    enum: [OPEN, CLOSED, HOLD]
+    enum: [OPEN, CLOSED, IN_REVIEW]
     example: "OPEN"
   headcount:
     type: integer

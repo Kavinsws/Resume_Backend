@@ -8,7 +8,7 @@ import {
 enum Status{
   OPEN = "OPEN",
   CLOSED= "CLOSED",
-  HOLD= "HOLD"
+  IN_REVIEW= "IN_REVIEW"
 }
 
 @index({ location: 1 })

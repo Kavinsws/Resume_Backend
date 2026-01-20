@@ -2,7 +2,7 @@ export interface CreateJobDTO {
   title: string;
   department: string;
   location: string;
-  status: string;
+  status: "OPEN" | "CLOSED" | "IN_REVIEW";
   headcount: number;
   description: string;
   requirements: string;
@@ -13,7 +13,7 @@ export interface ResponseJobDTO {
   title: string;
   department: string;
   location: string;
-  status: string;
+  status: "OPEN"| "CLOSED" | "IN_REVIEW";
   headcount: number;
   description: string;
   requirements: string;
@@ -25,7 +25,7 @@ export interface UpdateJobDTO {
   title: string;
   department: string;
   location: string;
-  status: "OPEN" | "CLOSED" | "HOLD";
+  status: "OPEN" | "CLOSED" | "IN_REVIEW";
   headcount: number;
   description: string;
   requirements: string;

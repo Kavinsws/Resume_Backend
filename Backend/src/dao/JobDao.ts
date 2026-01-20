@@ -9,7 +9,7 @@ export interface UpdateJobDAO {
     title: string;
     department: string;
     location: string;
-    status: "OPEN" | "CLOSED" | "HOLD";
+    status: "OPEN" | "CLOSED" | "IN_REVIEW";
     headcount: number;
     description: string;
     requirements: string;
