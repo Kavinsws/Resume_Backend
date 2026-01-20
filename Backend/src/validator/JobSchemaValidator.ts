@@ -76,7 +76,7 @@ export const getJobCountResponseSchmea = z.object({
   totalJobs: z.number().int(),
   openJobs: z.number().int(),
   closedJobs:z.number().int(),
-  holdJobs:z.number().int()
+  inReviewJobs:z.number().int()
 })
 
 

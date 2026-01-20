@@ -74,9 +74,9 @@ export const getJobCountsRepo = async():Promise<getJobCount>=>{
     const totalJobs = await JobDao.countDocuments();
     const openJobs = await JobDao.countDocuments({status:"OPEN"});
     const closedJobs = await JobDao.countDocuments({status:"CLOSED"});
-    const holdJobs = await JobDao.countDocuments({status:"HOLD"});
+    const inReviewJobs = await JobDao.countDocuments({status:"IN_REVIEW"});
 
-    return{totalJobs,openJobs,closedJobs,holdJobs}
+    return{totalJobs,openJobs,closedJobs,inReviewJobs}
   }
   catch(error){
     throw new HttpError(500,"Failed to count the jobs");

@@ -81,7 +81,7 @@ export class JobTransformer {
       totalJobs:data.totalJobs,
       openJobs:data.openJobs,
       closedJobs:data.closedJobs,
-      holdJobs:data.holdJobs
+      inReviewJobs:data.inReviewJobs
     }
   }
 }

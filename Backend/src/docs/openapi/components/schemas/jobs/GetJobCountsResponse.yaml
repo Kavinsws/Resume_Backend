@@ -12,6 +12,6 @@ properties:
   closedJobs:
     type: integer
     example: 4
-  holdJobs:
+  inReviewJobs:
     type: integer
     example: 2

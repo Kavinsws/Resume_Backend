@@ -121,7 +121,6 @@ export const getJobCountsService = async():Promise<getJobCountResponseDTO>=>{
   try{
     const result = await getJobCountsRepo();
 
-    if(!result)throw new HttpError(500,"Failed to count the jobs");
     const transformedJobCounts = JobTransformer.getJobCountResponse(result);
 
     return{

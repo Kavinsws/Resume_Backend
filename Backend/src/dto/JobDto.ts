@@ -63,7 +63,7 @@ export interface getJobCount{
   totalJobs:number,
   openJobs:number,
   closedJobs:number,
-  holdJobs:number
+  inReviewJobs:number
 }
 
 export interface getJobCountResponseDTO{
