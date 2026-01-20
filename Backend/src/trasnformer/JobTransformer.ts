@@ -10,7 +10,7 @@ export class JobTransformer {
       title: data.title?.trim(),
       department: data.department?.trim(),
       location: data.location?.trim(),
-      status: data.status?.trim(),
+      status: data.status,
       headcount: Number(data.headcount),
       description: data.description?.trim(),
       requirements: data.requirements?.trim(),
