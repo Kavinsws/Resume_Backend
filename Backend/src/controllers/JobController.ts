@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { createJobService, deleteJobService, getAllJobsService, updateJobService } from "../services/JobServices";
-import { getJobResponsePaginationSchema, getJobsResponseSchema, queryParamsSchema, responseJobSchema, updateJobResponseSchema } from "../validator/JobSchemaValidator";
+import { createJobService, deleteJobService, getAllJobsService, getJobCountsService, updateJobService } from "../services/JobServices";
+import { getJobCountResponseSchmea, getJobResponsePaginationSchema, getJobsResponseSchema, queryParamsSchema, responseJobSchema, updateJobResponseSchema } from "../validator/JobSchemaValidator";
 
 export const createJobController = async (
   req: Request,
@@ -68,6 +68,24 @@ export const getJobsController = async(req:Request,res:Response,next:NextFunctio
                 message:result.message,
                 pagination:safeResponsePaginationData,
                 data:safeRessponse
+            })
+        }
+    }
+    catch(error){
+        next(error);
+    }
+}
+
+export const getJobCountsController = async(req:Request,res:Response,next:NextFunction)=>{
+    try{
+        const result = await getJobCountsService();
+
+        if(result){
+            const safeJobCountsResponse = getJobCountResponseSchmea.parse(result.data);
+
+            res.status(result.statusCode).json({
+                message:result.message,
+                data:safeJobCountsResponse
             })
         }
     }

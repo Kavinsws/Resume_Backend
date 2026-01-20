@@ -1,10 +1,10 @@
 import { HttpError } from "../error/HttpError";
-import { createJobRepo, deleteJobRepo, findJobByTitle, getAllJobsCountRepo, getAllJobsRepo } from "../repository/JobRepo";
+import { createJobRepo, deleteJobRepo, findJobByTitle, getAllJobsCountRepo, getAllJobsRepo, getJobCountsRepo } from "../repository/JobRepo";
 import { JobTransformer } from "../trasnformer/JobTransformer";
 import { createJob } from "../validator/JobSchemaValidator";
 import { updateJob } from "../validator/JobSchemaValidator";
 import { findJobById,updateJobRepo } from "../repository/JobRepo";
-import { deleteJobResponseDTO, getJobsResponseDTO, updateJobRes } from "../dto/JobDto";
+import { deleteJobResponseDTO, getJobCountResponseDTO, getJobsResponseDTO, updateJobRes } from "../dto/JobDto";
 
 export const createJobService = async (data: createJob) => {
   try {
@@ -114,5 +114,24 @@ export const getAllJobsService = async(page:number,limit:number):Promise<getJobs
       throw error
     }
     throw new HttpError(500,"Failed to fetch the Jobs");
+  }
+}
+
+export const getJobCountsService = async():Promise<getJobCountResponseDTO>=>{
+  try{
+    const result = await getJobCountsRepo();
+
+    const transformedJobCounts = JobTransformer.getJobCountResponse(result);
+
+    return{
+      statusCode:200,
+      message:"Job counts fetched successfully",
+      data:transformedJobCounts
+    }
+  }
+  catch(error){
+    if(error instanceof HttpError)throw error;
+
+    throw new HttpError(500,"Failed to fetch job counts");
   }
 }

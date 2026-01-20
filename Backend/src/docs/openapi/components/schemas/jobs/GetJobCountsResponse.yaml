@@ -1,0 +1,17 @@
+type: object
+properties:
+  message:
+    type: string
+    example: Job status count fetched successfully
+  totalJobs:
+    type: integer
+    example: 5
+  openJobs:
+    type: integer
+    example: 7
+  closedJobs:
+    type: integer
+    example: 4
+  inReviewJobs:
+    type: integer
+    example: 2

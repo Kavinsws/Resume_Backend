@@ -1,5 +1,5 @@
 import { DocumentType } from "@typegoose/typegoose";
-import { CreateJobDTO, getJobResponsePaginationDTO, ResponseJobDTO,UpdateJobDTO, updateJobReposnseDTO } from "../dto/JobDto";
+import { CreateJobDTO, getJobCount, getJobResponsePaginationDTO, ResponseJobDTO,UpdateJobDTO, updateJobReposnseDTO } from "../dto/JobDto";
 import { Job } from "../model/Job";
 import { JobDocument } from "../dao/JobDao";
 import { da } from "zod/v4/locales";
@@ -73,6 +73,15 @@ export class JobTransformer {
       currentPage:data.currentPage,
       totalPages:data.totalPages,
       totalResults:data.totalResults
+    }
+  }
+
+  static getJobCountResponse(data:getJobCount):getJobCount{
+    return{
+      totalJobs:data.totalJobs,
+      openJobs:data.openJobs,
+      closedJobs:data.closedJobs,
+      inReviewJobs:data.inReviewJobs
     }
   }
 }

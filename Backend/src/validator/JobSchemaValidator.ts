@@ -71,3 +71,12 @@ export const getJobResponsePaginationSchema = z.object({
   totalPages: z.number().int().positive().min(1),
   totalResults: z.number().int().positive().min(0),
 });
+
+export const getJobCountResponseSchmea = z.object({
+  totalJobs: z.number().int(),
+  openJobs: z.number().int(),
+  closedJobs:z.number().int(),
+  inReviewJobs:z.number().int()
+})
+
+

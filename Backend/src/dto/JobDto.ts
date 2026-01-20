@@ -58,3 +58,16 @@ export interface getJobsResponseDTO{
   pagination:getJobResponsePaginationDTO
   data:ResponseJobDTO[]
 }
+
+export interface getJobCount{
+  totalJobs:number,
+  openJobs:number,
+  closedJobs:number,
+  inReviewJobs:number
+}
+
+export interface getJobCountResponseDTO{
+  statusCode:number,
+  message:string,
+  data:getJobCount
+}
